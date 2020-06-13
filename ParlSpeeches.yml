@@ -1,0 +1,52 @@
+swagger: "2.0"
+info:
+  description: desc.
+  version: "1.0.0"
+  title: A title
+consumes:
+  - application/vnd.collection+json
+produces:
+  - application/vnd.collection+json
+
+basePath: /MockAPI
+
+# Supported paths
+paths:
+  /transcript:
+    get:
+      operationId: getmethods.read_all
+      tags:
+        - Speech
+      summary: Get all the speeches sorted by something maybe
+      description: get all of them sorted maybe
+      responses:
+        200:
+          description: Great success!
+          schema:
+            type: array
+            items:
+              properties:
+                # these are the fields
+                transcript_id:
+                  type: string
+                  description: the id of transcript
+                transcript:
+                  type: string
+                  description: transcript text
+                speaker_id:
+                  type: string
+                  description: the id of speaker
+                party:
+                  type: string
+                  description: party affiliation
+                name:
+                  type: string
+                  description: name and or title
+                section:
+                  type: string
+                  description: section
+                date:
+                  type: string
+                  description: date
+
+                
