@@ -1,0 +1,13 @@
+IMPORTANT
+1. Implement serialization
+2. implement read_all GET method
+3. Write some useful tests
+3. Decide on and implement endpoints and parameters
+4. Add more entries to database and implement pagination 
+5. Design homepage, containing reasoning for project and examples on how to use API
+
+
+1. Write program to sync Riksdagen API with mine (Daemon or simple script)
+2. Do some NLP things
+3. Learn org-mode
+4. 
