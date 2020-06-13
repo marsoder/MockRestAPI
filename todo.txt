@@ -1,6 +1,6 @@
 IMPORTANT
-1. Implement serialization
-2. implement read_all GET method
+1. Implement serialization DONE
+2. implement some GET method/s
 3. Write some useful tests
 3. Decide on and implement endpoints and parameters
 4. Add more entries to database and implement pagination 
@@ -11,3 +11,9 @@ IMPORTANT
 2. Do some NLP things
 3. Learn org-mode
 4. 
+
+
+To fix:
+1. import error in getmethods.py. from models import Transcript, but import error for attempting to import other data.
+temporary fix with from models import *import
+2. wrote read method which serves first entry in db, but the transcript text is improperly encoded for swedish alphabet.
