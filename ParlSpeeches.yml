@@ -14,16 +14,16 @@ basePath: /MockAPI
 paths:
   /transcript:
     get:
-      operationId: getmethods.read
+      operationId: getmethods.read_all
       tags:
-        - Speech
+        - Transcripts
       summary: Get all the speeches sorted by something maybe
       description: get all of them sorted maybe
       responses:
         200:
           description: Great success!
           schema:
-            type: string
+            type: array
             items:
               properties:
                 # these are the fields
@@ -49,4 +49,88 @@ paths:
                   type: string
                   description: date
 
-                
+  /transcript/{speaker_id}:
+    get:
+      operationId: getmethods.read_speaker_id
+      tags:
+        - Transcripts
+      summary: read all transcripts from given speaker id
+      description: get transcripts from given speaker
+      parameters:
+        - name: speaker_id
+          in: path
+          description: the id of desired speaker
+          type: string
+          required: True
+      responses:
+        200:
+          description: Great success!
+          schema:
+            type: array
+            items:
+              properties:
+                transcript_id:
+                  type: string
+                  description: the id of transcript
+                transcript:
+                  type: string
+                  description: transcript text
+                speaker_id:
+                  type: string
+                  description: the id of speaker
+                party:
+                  type: string
+                  description: party affiliation
+                name:
+                  type: string
+                  description: name and or title
+                section:
+                  type: string
+                  description: section
+                date:
+                  type: string
+                  description: date
+
+
+
+  /transcript/{party}:
+    get:
+      operationId: getmethods.read_party
+      tags:
+        - Transcripts
+      summary: read all transcripts from given speaker id
+      description: get transcripts from given speaker
+      parameters:
+        - name: party
+          in: path
+          description: acronym for a political party
+          type: string
+          required: True
+      responses:
+        200:
+          description: Great success!
+          schema:
+            type: array
+            items:
+              properties:
+                transcript_id:
+                  type: string
+                  description: the id of transcript
+                transcript:
+                  type: string
+                  description: transcript text
+                speaker_id:
+                  type: string
+                  description: the id of speaker
+                party:
+                  type: string
+                  description: party affiliation
+                name:
+                  type: string
+                  description: name and or title
+                section:
+                  type: string
+                  description: section
+                date:
+                  type: string
+                  description: date
