@@ -92,20 +92,18 @@ paths:
                   description: date
 
 
-
-  /transcript/{party}:
+  /transcript:
     get:
       operationId: getmethods.read_party
       tags:
         - Transcripts
-      summary: read all transcripts from given speaker id
-      description: get transcripts from given speaker
+      summary: get all transcripts by party
+      description: get transcripts from given party
       parameters:
-        - name: party
-          in: path
-          description: acronym for a political party
+        - in: query
+          name: party
           type: string
-          required: True
+          description: sigh
       responses:
         200:
           description: Great success!

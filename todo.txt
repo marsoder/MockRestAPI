@@ -1,6 +1,7 @@
 IMPORTANT
 1. Implement serialization DONE
 2. implement some GET method/s IN PROGRESS
+	implement POST method , using markov chain generated text IN PROGRESS
 3. Write some useful tests
 3. Decide on and implement endpoints and parameters
 4. Add more entries to database and implement pagination 
@@ -19,3 +20,6 @@ To fix:
 temporary fix with from models import *import
 2. wrote read method which serves first entry in db, but the transcript text is improperly encoded for swedish alphabet.
 3. reorder fields so that transcripts appear last
+
+
+Rename so that variable names are more appropriate and makes sense, and also refactor.
