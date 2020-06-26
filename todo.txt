@@ -21,5 +21,4 @@ temporary fix with from models import *import
 2. wrote read method which serves first entry in db, but the transcript text is improperly encoded for swedish alphabet.
 3. reorder fields so that transcripts appear last
 
-
-Rename so that variable names are more appropriate and makes sense, and also refactor.
+Lots of refactoring

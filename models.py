@@ -1,5 +1,6 @@
-from config import db,ma
+from config import db, ma
 from marshmallow import fields
+
 #db.metadata.clear()
 class Transcript(db.Model):
     __tablename__ = "transcript"
@@ -10,6 +11,13 @@ class Transcript(db.Model):
     party = db.Column(db.String(2))
     section = db.Column(db.String(100))
     date = db.Column(db.String(30))
+
+    def from_dict(self, d):
+        for k, v in d.items():
+            setattr(self, k, v)
+        return self
+
+
 class TranscriptSchema(ma.Schema):
     transcript_id = fields.Str()
     transcript = fields.Str()
