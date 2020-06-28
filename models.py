@@ -16,8 +16,6 @@ class Transcript(db.Model):
         for k, v in d.items():
             setattr(self, k, v)
         return self
-
-
 class TranscriptSchema(ma.Schema):
     transcript_id = fields.Str()
     transcript = fields.Str()

@@ -2,7 +2,8 @@ IMPORTANT
 1. Implement serialization DONE
 2. implement some GET method/s IN PROGRESS
 	implement POST method , using markov chain generated text IN PROGRESS
-3. Write some useful tests
+	-- http methods (get, post, delete) all work, I think
+3. Write some useful tests IN PROGRESS
 3. Decide on and implement endpoints and parameters
 4. Add more entries to database and implement pagination 
 5. Design homepage, containing reasoning for project and examples on how to use API
