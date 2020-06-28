@@ -32,7 +32,7 @@ class EndPointTest(unittest.TestCase):
         response = requests.get(self.speaker_id_url)
         all_true = all(js.get("speaker_id") == "0992800527915" for js in response.json())
         return self.assertTrue(all_true)
-    def test_post_and_get_speaker_id(self):
+    def test_post(self):
         # bad test need fix
         a = MarkovChainTranscript(self.speaker_id_url).to_transcript("test_id")
         t = TranscriptSchema()
@@ -43,8 +43,6 @@ class EndPointTest(unittest.TestCase):
     def test_delete(self):
         r = requests.delete(self.all_url + "/test_id")
         return self.assertEqual(r.status_code, 200)
-
-
 
 if __name__ == "__main__":
     unittest.main()
