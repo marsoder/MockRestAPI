@@ -1,7 +1,6 @@
-
+import os
 from flask import render_template
 import config
-
 
 
 connex_app = config.connex_app
