@@ -70,6 +70,5 @@ def delete(transcript_id):
     else:
         return abort(404, "doesnt exist")
 
-
 def put(transcript_id):
     pass
