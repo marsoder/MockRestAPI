@@ -16,8 +16,8 @@ sys.path.append("..")
 
 SWAGGER_PATH = "/home/xioahei/Learning/MockRiksdagAPI"
 
-from config import fapp, connex_app, db
-from models import Transcript, TranscriptSchema
+from config import fapp, connex_app
+from models import Transcript, TranscriptSchema, db
 # fapp = App(__name__, specification_dir=SWAGGER_PATH)
 # fapp.add_api("ParlSpeeches.yml")
 connex_app.add_api("ParlSpeeches.yml")
