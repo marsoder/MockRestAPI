@@ -52,7 +52,7 @@ paths:
                 date:
                   type: string
                   description: date
-
+                    
     post:
       operationId: httpmethods.post
       tags:

@@ -1,7 +1,6 @@
 from config import db, ma
 from marshmallow import fields
 
-#db.metadata.clear()
 class Transcript(db.Model):
     __tablename__ = "transcript"
     transcript_id = db.Column(db.String(30), primary_key=True)
@@ -16,6 +15,10 @@ class Transcript(db.Model):
         for k, v in d.items():
             setattr(self, k, v)
         return self
+    
+    def query_transcript_id(self):
+        return { x.transcript_id for x in self.query(self.transcript_id) }
+
 class TranscriptSchema(ma.Schema):
     transcript_id = fields.Str()
     transcript = fields.Str()

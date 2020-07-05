@@ -6,10 +6,10 @@ from flask_marshmallow import Marshmallow
 basedir = "/home/xioahei/Learning/MockRiksdagAPI/"
 
 connex_app = connexion.App(__name__, specification_dir=basedir)
-app = connex_app.app
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + \
+fapp = connex_app.app
+fapp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + \
         os.path.join(basedir, 'transcripts.db')
 
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
+fapp.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+db = SQLAlchemy(fapp)
+ma = Marshmallow(fapp)
