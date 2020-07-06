@@ -1,7 +1,6 @@
 import os
 import pytest
 import sys
-<<<<<<< HEAD
 import requests
 import json
 
@@ -71,13 +70,5 @@ def test_delete(app_test):
 def test_delete_not_existing(app_test):
     response = app_test.delete("MockAPI/transcript/nonexistingid")
     assert response.status_code == 404
-=======
-sys.path.append("/home/xioahei/Learning/MockRiksdagAPI/")
-from models import Transcript, TranscriptSchema
 
 
-@pytest.fixture(scope="session")
-def app():
-    abs_file_path = os.path.abspath(os.path.dirname(__file__))
-
->>>>>>> sync
