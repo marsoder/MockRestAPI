@@ -1,0 +1,9 @@
+  {
+    "date": "2020-06-23 00:00:00",
+    "party": "S",
+    "section": "\u00c5terrapportering fr\u00e5n informellt m\u00f6te med EU:s stats- och regeringschefer",
+    "speaker_id": "testspeakerid",
+    "speaker_title": "Statsministern Stefan L\u00f6fven (S)",
+    "transcript": "<p>Herr talman! \u00c5terigen: Vi kommer att trycka p\u00e5 f\u00f6r att om m\u00f6jligt sk\u00e4rpa klimatdelen.</p><p>N\u00e4r det g\u00e4ller r\u00e4ttsstatens principer och s\u00e5dana fr\u00e5gor kan vi se att kommissionen i sina f\u00f6rslag nu tar ett kliv fram\u00e5t. Det v\u00e4lkomnar vi. Vi har legat p\u00e5, tillsammans med flera andra, om att det m\u00e5ste vara s\u00e5. Det m\u00e5ste tydligg\u00f6ras i regelverket, naturligtvis, n\u00e4r det g\u00e4ller s\u00e5v\u00e4l \u00e5terh\u00e4mtningspaketet som l\u00e5ngtidsbudgeten. Det \u00e4r allts\u00e5 skarpare nu.</p><p>Det kommer fortfarande att finnas l\u00e4nder som inte tycker att det ska vara riktigt s\u00e5 skarpt, och de kanske hittar n\u00e5gon v\u00e4g att hantera detta eller kommer p\u00e5 ett s\u00e4tt att kr\u00e5ngla till det, men vi kommer \u00e4nd\u00e5 att ligga p\u00e5. Vi m\u00e5ste kunna se skattebetalarna i \u00f6gonen och visa att detta anv\u00e4nds p\u00e5 ett s\u00e4tt som gynnar r\u00e4ttsstatens principer, demokrati och m\u00e4nskliga r\u00e4ttigheter. Vi kommer att ligga p\u00e5 f\u00f6r detta.</p><p>\u00c5terrapporteringen var h\u00e4rmed avslutad.</p>",
+    "transcript_id": "testid"
+  }
