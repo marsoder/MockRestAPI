@@ -1,22 +1,18 @@
 import sys
 import os
-import requests
-sys.path.insert(0,"..")
-from models import Transcript
-from riksdagen import RiksdagenAPI
-from config import db
+import syncfunctions
 
-a = RiksdagenAPI(size=100)
-riksdagen_count = a.count
-my_db_count = Transcript().query.count()
-riksdagen_ids = a.transcript_ids
-db_ids = (x.transcript_id for x in db.session.query(Transcript.transcript_id))
+from riksdagen import RiksYearData
 
-def difference(a,b):
-    return set(a) - set(b)
+riks = RiksYearData(size=101)
 
-# requests.delete("http://localhost:5000/MockAPI/transcript/testid")
-
-
-print(difference(db_ids, riksdagen_ids))
-print("testid" in set(db_ids))
+if syncfunctions.synced(riks):
+    print("synced")
+    sys.exit(0)
+else:
+    missing_ids = syncfunctions.missing(riks)
+    print(missing_ids)
+    # syncfunctions.db_insert(riks.get_missing_ids())
+    for x in riks.get_transcripts_urls(missing_ids):
+        print(x)
+    pass
