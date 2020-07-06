@@ -5,7 +5,6 @@ import markovify
 import json
 from models import Transcript, TranscriptSchema
 
-
 class MarkovChainTranscript(object):
     def __init__(self, url):
         self.url = url
@@ -51,5 +50,5 @@ class MarkovChainTranscript(object):
         return fake_transcript
 
 
-u = "http://localhost:5000/MockAPI/transcript/0888807074321"
-#devobj = MarkovChainTranscript(u).to_transcript()
+#u = "http://localhost:5000/MockAPI/transcript/0218878014918"
+#devobj = MarkovChainTranscript(u)
