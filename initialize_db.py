@@ -20,7 +20,7 @@ def fetch_data(date="2019%2F20", size=100):
 
     js_response = requests.get(identifier).json()[
         'anforandelista']['anforande']
-    urls = (js['anforande_url_xml'] + '/json' for js in js_response)
+    urls = (js['anforande_url_xml'] + '&utformat=json' for js in js_response)
     return urls
 
 def insert_db(urls):
@@ -35,7 +35,6 @@ def insert_db(urls):
         t.section = jsresp.get("avsnittsrubrik")
         t.date = jsresp.get("dok_datum")
         db.session.add(t)
-
 if __name__ == "__main__":
     # inserting first batch of data
     print("fetching and inserting first batch of data, might take a while")
