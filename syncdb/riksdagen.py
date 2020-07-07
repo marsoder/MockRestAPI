@@ -3,25 +3,20 @@ import sys
 import re
 
 
-<<<<<<< HEAD
-class RiksResponse(object):
-    """ object for a given parliament year """
-    BASE_URL = "https://data.riksdagen.se/anforandelista/"
-    def __init__(self, year="2019%2F20", size=100000):
-        # check whether year is valid? 
-        self.year = year
-        self.size = size
-        self.url  = f"{self.BASE_URL}?rm={self.year}&anftyp=&d=&ts=&parti=&iid=&sz={size}&utformat=json"
-=======
 class RiksYearData(object):
-    """ object for a given parliament year """
+    """ object for a given parliament year used for fetching data from riksdagen
+    """
+
     BASE_URL = "https://data.riksdagen.se/anforandelista/"
+    transcript_fields = ["anforande_id", "intressent_id", "talare",
+                         "parti", "avsnittsrubrik", "dok_datum",  "anforandetext"]
+    to_english_map = {"anforande_id" : "transcript_id" ...}
+
     def __init__(self, year="2019%2F20", size=100000):
 
         self.year = year
         self.size = size
         self.url = f"{self.BASE_URL}?rm={self.year}&anftyp=&d=&ts=&parti=&iid=&sz={size}&utformat=json"
->>>>>>> sync
 
         # this takes long time for large size values
         # Haven't identified the bottleneck yet
@@ -30,23 +25,16 @@ class RiksYearData(object):
             response.raise_for_status()
         self.response = response
 
-<<<<<<< HEAD
         # make sure response does not containg 0 transcripts
         count_error_message = "0 transcripts in response, make sure year paramter is properly formatted, e.g 2019&2F20"
         assert self.count != 0, count_error_message
-        
-=======
+
         assert self.count != 0, "make sure year parameter correctly formatted"
->>>>>>> sync
 
     @property
     def size(self):
         return self._size
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> sync
     @size.setter
     def size(self, number):
         if number < 1:
@@ -55,11 +43,7 @@ class RiksYearData(object):
 
     @property
     def count(self) -> int:
-<<<<<<< HEAD
-        count = self.response.json()['anforandelista']['@antal'] 
-=======
         count = self.response.json()['anforandelista']['@antal']
->>>>>>> sync
         count = int(count)
         return count
 
@@ -68,13 +52,9 @@ class RiksYearData(object):
         transcripts = self.response.json()['anforandelista']['anforande']
         return (js.get("anforande_id") for js in transcripts)
 
-<<<<<<< HEAD
-a = RiksResponse(size=100)
-=======
     # get the transcripts given set of transcript ids
     def get_transcripts_urls(self, tids):
         documents = self.response.json()['anforandelista']['anforande']
         urls = (js['anforande_url_xml'] +
                 '&utformat=json' for js in documents if js.get("anforande_id") in tids)
         return urls
->>>>>>> sync

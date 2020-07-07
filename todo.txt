@@ -1,25 +1,27 @@
 IMPORTANT
-1. Implement serialization DONE
-2. implement some GET method/s IN PROGRESS
-	implement POST method , using markov chain generated text IN PROGRESS
-	-- http methods (get, post, delete) all work, I think
-3. Write some useful tests IN PROGRESS
-3. Decide on and implement endpoints and parameters
-4. Add more entries to database and implement pagination 
-5. Design homepage, containing reasoning for project and examples on how to use API
+ Write some useful tests IN PROGRESS
+	- Write more complicated tests
+ Decide on and implement endpoints and parameters
+	- important ones are pretty much done
+ Add more entries to database and implement pagination 
+ Design homepage, containing reasoning for project and examples on how to use API
+	- IN PROGRESS, will do when I feel like it
+
+NOT AS IMPORTANT
+ Write program to sync Riksdagen API with mine (Daemon or simple script)
+	- going to use cron scheduler
+	- writing of syncing script is in progress
+	
+ Do some NLP things
+	- code for generating markov chain text is more or less done
+
+ Learn org-mode
+ 
 
 
-1. Write program to sync Riksdagen API with mine (Daemon or simple script)
-	need to add timestamps for when resource was last changed in Riksdagen api to check against resource in my api
-2. Do some NLP things
-3. Learn org-mode
-4. 
-
-
-To fix:
-1. import error in getmethods.py. from models import Transcript, but import error for attempting to import other data.
-temporary fix with from models import *import
-2. wrote read method which serves first entry in db, but the transcript text is improperly encoded for swedish alphabet.
-3. reorder fields so that transcripts appear last
+TO FIX: 
+ Fix encoding, the data in response contains unicode escape characters. 
+ wrote read method which serves first entry in db, but the transcript text is improperly encoded for swedish alphabet.
+ reorder fields so that transcripts appear last to enhance readability
 
 Lots of refactoring
