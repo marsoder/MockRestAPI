@@ -3,15 +3,11 @@ import sys
 import re
 
 
-class RiksYearData(object):
+class RiksClient(object):
     """ object for a given parliament year used for fetching data from riksdagen
     """
 
     BASE_URL = "https://data.riksdagen.se/anforandelista/"
-    transcript_fields = ["anforande_id", "intressent_id", "talare",
-                         "parti", "avsnittsrubrik", "dok_datum",  "anforandetext"]
-    to_english_map = {"anforande_id" : "transcript_id" ...}
-
     def __init__(self, year="2019%2F20", size=100000):
 
         self.year = year

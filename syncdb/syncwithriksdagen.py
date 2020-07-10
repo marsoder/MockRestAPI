@@ -3,33 +3,22 @@ import os
 import datetime
 import syncfunctions
 from models import Transcript
-from riksdagen import RiksYearData
+from riksdagen import RiksClient
+riks = RiksClient(size=11000)
 
-riks = RiksYearData(size=101)
-
-# if syncfunctions.synced(riks):
-#     print("synced")
-#     sys.exit(0)
-# else:
-#     missing_ids = syncfunctions.missing(riks)
-#     print(missing_ids)
-#     # syncfunctions.db_insert(riks.get_missing_ids())
-#     urls = set(riks.get_transcripts_urls(missing_ids))
-#     syncfunctions.insert_db(urls)
-#     print(Transcript.query.count())
+current_count = syncfunctions.db_count
+print(current_count())
 
 if __name__ == "__main__":
     with open("sync-tracking.txt", "a") as f:
         if syncfunctions.synced(riks):
-
+            print("is synced")
             time_now = datetime.datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
             f.write(f"{time_now}: databases are synced\n")
 
         else:
             print("syncing")
-            # syncfunctions.sync(riks)
-            m = syncfunctions.missing(riks)
-            missing_urls = riks.get_transcripts_urls(m)
-            syncfunctions.insert_db(missing_urls)
+            syncfunctions.sync(riks)
+            c = current_count()
+            print(f"Success!", f"current count is: {c}")
             
-            # print(syncfunctions.db_count())
