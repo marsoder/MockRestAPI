@@ -1,8 +1,6 @@
 import datetime
 import sys
-import asyncio
-sys.path.insert(0, "./syncdb")
-sys.path.insert(0, "/home/xioahei/Learning/MockRiksdagAPI")
+sys.path.insert(0, "..")
 from config import db
 from riksdagen import RiksClient
 from models import Transcript
@@ -10,7 +8,7 @@ import json
 import requests
 
 
-fields_eng_swe_map = {"anforande_id": "transcript_id", "talare": "speaker_title", "parti": "party", "dok_datum": "date", "avsnittsrubrik": "section", "intressent_id": "speaker_id"}
+fields_eng_swe_map = {"anforande_id": "transcript_id","anforandetext" : "transcript", "talare": "speaker_title", "parti": "party", "dok_datum": "date", "avsnittsrubrik": "section", "intressent_id": "speaker_id"}
     
 def db_count() -> int:
     return Transcript.query.count()
@@ -31,9 +29,9 @@ def missing_transcripts(riksobj) -> set:
     return riks.difference(mine)
 
 
-def filter_and_translate(d):
+def filter_and_translate(d) -> dict:
     """ return the dictionary d with correct schema """
-    return {fields_eng_swe_map[k]:v for k,v in d.items() if k in fields_eng_swe_map}
+    return {fields_eng_swe_map[k]:v for k,v in d.items() if k in fields_eng_swe_map.keys()}
 
 
 def insert_db(urls) -> None:
