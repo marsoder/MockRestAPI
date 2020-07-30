@@ -5,27 +5,26 @@ import markovify
 import json
 from models import Transcript, TranscriptSchema
 
+
 class MarkovChainTranscript(object):
+    """  """
     def __init__(self, url):
         self.url = url
-        self.collection = self.get_collection()
-        self.transcripts = self.transcripts()
-        self.model = self.build_model()
 
-    def get_collection(self):
-        """ return collection of transcripts associated with speaker_id in url constructor parameter """
+    @property
+    def collection(self) -> requests.models.Response:
         return requests.get(self.url)
 
+    @property
     def transcripts(self):
-        """ return array of transcripts from url """
-        return [t.get("transcript") for t in self.collection.json()]
+        return (t.get("transcript") for t in self.collection.json())
 
-    def build_model(self):
-        """ build model from transcripts for generating new text """
+    @property
+    def model(self) -> markovify.text.Text:
         return markovify.Text("".join([t for t in self.transcripts]))
 
-    def generate_transcript(self, **kwargs):
-        """ generates new text from all transcripts contained in collection """
+    def generate_transcript(self, **kwargs) -> str:
+        """ generates new text from all transcripts contained in response body """
        # if quantity not specified, defaults to 5
        # make_sentece attempts to make valid sentence, and raises a TypeError
        # if it fails, hence the except
@@ -49,6 +48,3 @@ class MarkovChainTranscript(object):
         fake_transcript.date = str(datetime.datetime.now())
         return fake_transcript
 
-
-#u = "http://localhost:5000/MockAPI/transcript/0218878014918"
-#devobj = MarkovChainTranscript(u)
