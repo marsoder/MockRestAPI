@@ -1,9 +1,9 @@
 import os
 from flask import render_template
-import config
+from RiksApp.config import connex_app
 
 
-connex_app = config.connex_app
+# connex_app = config.connex_app
 connex_app.add_api("ParlSpeeches.yml")
 @connex_app.route("/")
 def homepage():

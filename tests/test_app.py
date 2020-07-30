@@ -5,21 +5,22 @@ import requests
 import json
 
 # appending necessary otherwise ModuleNotFoundError is raised due to not finding httpmethods
-sys.path.append("..")
+# sys.path.append("..")
 
-BASE_DIR = "/home/xioahei/Learning/MockRiksdagAPI"
+# BASE_DIR = "/home/xioahei/Learning/MockRiksdagAPI"
 
-from config import flask_app, connex_app
-from models import Transcript, TranscriptSchema, db
-connex_app.add_api("ParlSpeeches.yml")
-flask_app.config['SQLALCHEMY_DATABASE_URI']  = 'sqlite:////' + BASE_DIR + "/tests/test-db.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+from RiksApp.config import flask_app, connex_app
+from RiksApp.models import Transcript, TranscriptSchema, db
+connex_app.add_api("../RiksApp/ParlSpeeches.yml")
+flask_app.config['SQLALCHEMY_DATABASE_URI']  = "sqlite:////" + BASE_DIR  + "/test-db.db"
  
 @pytest.fixture(scope="module")
 def app_test():
     """ yields a test app with a test database that contains one test transcrip where transcript_id = testid, party=S, speaker_id = testspeakerid"""
  
 # reads json from file and converts into Transcript object
-    with open("test-transcript.txt", "r") as f:
+    with open("tests/test-transcript.txt", "r") as f:
         content = f.read()
         js = json.loads(content)
         global mock_transcript

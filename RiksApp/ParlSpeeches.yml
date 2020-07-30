@@ -1,0 +1,157 @@
+swagger: "2.0"
+info:
+  description: desc.
+  version: "1.0.0"
+  title: A title
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /MockAPI
+
+paths:
+  /transcript:
+    get:
+      operationId: RiksApp.httpmethods.read
+      tags:
+        - Transcripts
+      summary: Get all the speeches sorted by something maybe
+      parameters:
+       - in: query
+         name: party
+         type: string
+         description: sigh
+      description: get all of them sorted maybe
+      responses:
+        200:
+          description: Great success!
+          schema:
+            type: array
+            items:
+              properties:
+                # these are the fields
+                transcript_id:
+                  type: string
+                  description: the id of transcript
+                transcript:
+                  type: string
+                  description: transcript text
+                speaker_id:
+                  type: string
+                  description: the id of speaker
+                party:
+                  type: string
+                  description: party affiliation
+                name:
+                  type: string
+                  description: name and or title
+                section:
+                  type: string
+                  description: section
+                date:
+                  type: string
+                  description: date
+                    
+    post:
+      operationId: RiksApp.httpmethods.post
+      tags:
+        - Transcripts
+      summary: summary
+      description: insert into db
+      consumes: 
+        - application/json
+      parameters:
+        - name: transcript
+          in: body
+          required: True
+          schema:
+            type: object
+            properties:
+              transcript_id:
+                type: string
+                description: the id of transcript
+              transcript:
+                type: string
+                description: transcript text
+              speaker_id:
+                type: string
+                description: the id of speaker
+              party:
+                type: string
+                description: party affiliation
+              name:
+                type: string
+                description: name and or title
+              section:
+                type: string
+                description: section
+              date:
+                type: string
+                description: date
+      responses:
+        201:
+          description: Created
+            
+  /transcript/{speaker_id}:
+    get:
+      operationId: RiksApp.httpmethods.read_speaker_id
+      tags:
+        - Transcripts
+      summary: read all transcripts from given speaker id
+      description: get transcripts from given speaker
+      parameters:
+        - name: speaker_id
+          in: path
+          description: the id of desired speaker
+          type: string
+          required: True
+      responses:
+        200:
+          description: Great success!
+          schema:
+            type: array
+            items:
+              properties:
+                transcript_id:
+                  type: string
+                  description: the id of transcript
+                transcript:
+                  type: string
+                  description: transcript text
+                speaker_id:
+                  type: string
+                  description: the id of speaker
+                party:
+                  type: string
+                  description: party affiliation
+                name:
+                  type: string
+                  description: name and or title
+                section:
+                  type: string
+                  description: section
+                date:
+                  type: string
+                  description: date
+
+
+ #think I need define endpoint for transcript_id to implement delete
+# and put or simply make it part of /transcript somehow
+  /transcript/{transcript_id}:
+    delete:
+      operationId: RiksApp.httpmethods.delete
+      tags:
+        - Transcript
+      summary: Delete a person from the people list
+      description: Delete a person
+      parameters:
+        - name: transcript_id
+          in: path
+          type: string
+          description: Id of the person to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a person
+
