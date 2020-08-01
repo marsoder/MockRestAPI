@@ -1,0 +1,91 @@
+import time 
+from collections import Counter, defaultdict
+import gensim
+import sqlalchemy
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import SnowballStemmer
+import string
+import re
+import pandas as pd
+import timeit
+import sys
+
+stopwords = stopwords.words("swedish")
+translate_table = dict((ord(char), None) for char in string.punctuation)  
+stopwords_translate_table = dict((word, None) for word in stopwords)
+
+stemmer = SnowballStemmer("swedish")
+
+# functions
+        
+# remove noise
+def remove_noise(text) -> str:
+    return text.translate(translate_table)
+
+# remove tags
+def remove_tags(text) -> str:
+    cleanr = re.compile('<.*?>')
+    cleantext = re.sub(cleanr, ' ', text)
+    return cleantext
+
+def remove_stopwords(text) -> str:
+    return text.translate(stopwords_translate_table)
+
+def stemmatize(text):
+    return " ".join(list(map(lambda x: stemmer.stem(x), text.split())))
+
+def compose(data, functions):
+    for f in functions:
+        data = f(data)
+    return data
+
+def pre_processing(df,fs):
+    return df.applymap(lambda x: compose(x,fs))
+
+fs = [remove_tags, remove_noise, str.lower, remove_stopwords]
+db_path = "/home/xioahei/Learning/MockRiksdagAPI/"
+engine = sqlalchemy.create_engine(f"sqlite:////{db_path}/transcripts.db")
+
+with engine.connect() as connection:
+    data = connection.execute("select speaker_id, transcript from transcript where transcript is not null;")
+    labels, transcripts = zip(*data.fetchall())
+    transcripts = transcripts
+    
+df = pd.DataFrame(transcripts, columns=["transcript"])
+smaller_df = pd.DataFrame(df.transcript[:1])
+smaller_df = pre_processing(smaller_df, fs)
+corpus = " ".join([x for x in smaller_df["transcript"]])
+
+def build_vocab(corpus: str) -> dict:
+    tokens = [" ".join(word) + " </w>" for word in corpus.split()]
+    vocab = Counter(tokens)
+    return vocab
+
+vocab = build_vocab(corpus)
+
+def get_stats(vocab: dict) -> dict:
+    pairs = defaultdict(int)
+    for word, frequency in vocab.items():
+        symbols = word.split()
+
+        for i in range(len(symbols)-1):
+            pairs[symbols[i], symbols[i+1]] += frequency
+    return pairs
+
+def merge_vocab(pair, v_in):
+    v_out = {}
+    bigram = re.escape(" ".join(pair))
+    p = re.compile(r'(?<!\S)' + bigram + r'(?!\S)')
+
+    for word in v_in:
+        w_out = p.sub(''.join(pair), word)
+        v_out[w_out] = v_in[word]
+    return v_out
+
+for i in range(100):
+    pairs = get_stats(vocab)
+    if not pairs:
+        break
+    best = max(pairs, key=pairs.get)
+    vocab = merge_vocab(best, vocab)

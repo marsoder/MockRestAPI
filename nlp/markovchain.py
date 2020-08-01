@@ -3,7 +3,7 @@ import requests
 import string
 import markovify
 import json
-from models import Transcript, TranscriptSchema
+from RiksApp.models import Transcript, TranscriptSchema
 
 
 class MarkovChainTranscript(object):
