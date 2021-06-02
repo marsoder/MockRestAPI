@@ -90,7 +90,7 @@ team==1.0
 toml==0.10.1
 udiskie==2.2.0
 ufw==0.36
-urllib3==1.25.9
+urllib3==1.26.5
 virtualenv==20.0.10
 webencodings==0.5.1
 Werkzeug==1.0.1
