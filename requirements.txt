@@ -23,7 +23,7 @@ filelock==3.0.12
 Flask==1.1.2
 flask-marshmallow==0.13.0
 Flask-SQLAlchemy==2.4.3
-guake==3.7.0
+guake==3.8.5
 gufw==20.4.0
 html5lib==1.0.1
 idna==2.9
